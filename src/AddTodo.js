@@ -6,6 +6,7 @@ class AddTodo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {item: {title: ""}};
+    this.add = props.add;
   }
 
   onInputChange = (e) => {
@@ -13,6 +14,11 @@ class AddTodo extends React.Component {
     thisItem.title = e.target.value;
     this.setState({item: thisItem});
     console.log(thisItem);
+  }
+
+  onButtonClick = () => {
+    this.add(this.state.item);
+    this.setState({item: {title: ""}});
   }
 
   render() {
@@ -28,7 +34,12 @@ class AddTodo extends React.Component {
             />
           </Grid>
           <Grid xs={1} md={1} item>
-            <Button fullWidth color="secondary" variant="outlined">
+            <Button
+              fullWidth
+              color="secondary"
+              variant="outlined"
+              onClick={this.onButtonClick}
+            >
               +
             </Button>
           </Grid>
