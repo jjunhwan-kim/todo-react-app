@@ -26,3 +26,12 @@ export function call(api, method, request) {
       return Promise.reject(error);
     });
 }
+
+export function signin(userDto) {
+  return call("/auth/signin", "POST", userDto)
+    .then((response) => {
+      if (response.token) {
+        window.location.href = "/";
+      }
+    });
+}
